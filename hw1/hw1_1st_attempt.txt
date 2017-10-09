@@ -1,0 +1,63 @@
+1) GitHub: https://github.com/ConnorJPSmith
+
+2) Done
+
+3) Pseudocode:
+
+!start
+	#prep work
+	read in file
+	parse file for fasta format sequence > store as seq_orig
+	create complementary strand > store as seq_comp
+	reverse original strand > store as seq_orig_rev
+	reverse complementary strand > store as seq_comp_rev
+	store four strands as a list > seq_list
+	
+	#scan each sequence
+	proteins_found = () #empty list
+	seq_length = length(seq_orig)
+	codon_num = seq_length/3
+	for each seq in seq_list:
+		#check each frame
+		for shift 0:2 :
+			for i 0:codon_num:
+				seq_temp = ''
+				start_found = 'N'
+				start = i*3 + shift
+				end = start + 3
+				if end <= seq_length - 1: #verify its not out of range
+					if seq[start:end] = 'AUG'
+						seq_temp = 'M'
+						seq_found = 'Y'
+					else if seq_found = 'Y'
+						translate seq[start:end] > store as aa
+						if aa = 'STOP'
+							add seq_temp to proteins_found
+						else
+							seq_temp = seq_temp + aa
+						end if
+					else 
+						#do nothing
+					end if
+				else
+					#end search, not enough for codon
+				end if
+			continue
+		continue
+	
+	#find putative sites in each protein sequence
+	for prot in proteins_found:
+		basic_found = 'N'
+		for i in 0:length(prot):
+			if basic_found = 'Y'
+				last_basic = 'Y'
+			else
+				last_basic = 'N'
+			end if
+			if prot[i] in ('R','H','K')
+				basic_found = 'Y'
+			else 
+				basic_found = 'N'
+			end if
+			if basic_found = 'Y' and last_basic = 'Y'
+				annotate location #not sure how to do this part

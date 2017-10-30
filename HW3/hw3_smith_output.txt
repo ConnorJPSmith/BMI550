@@ -1,0 +1,5 @@
+HW3 Output Connor Smith
+Entropy score of MSA: 22.88703338685735
+Pairwise for Seq1 and Seq2: 303
+Pairwise for Seq1 and Seq3: 337
+Pairwise for Seq2 and Seq3: 275
